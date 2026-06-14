@@ -42,7 +42,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 
 {
 
-    options.UseSqlServer(builder.Configuration.GetConnectionString("AppDb"));
+    options.UseNpgsql(builder.Configuration.GetConnectionString("AppDb"));
 
     // Helpful in development to see parameter values in EF logs. Enable only for dev.
 
@@ -355,15 +355,11 @@ builder.Services.AddCors(options =>
 {
 
 	options.AddPolicy("AllowFrontend", policy =>
-
 	{
-
-		policy.WithOrigins("http://localhost:5173")  // your Vite dev server
-
+		policy.WithOrigins("http://localhost:5173")
+			  .SetIsOriginAllowed(origin => new Uri(origin).Host == "localhost" || new Uri(origin).Host.EndsWith(".vercel.app"))
 			  .AllowAnyHeader()
-
 			  .AllowAnyMethod();
-
 	});
 
 });
@@ -464,6 +460,7 @@ using (var scope = app.Services.CreateScope())
 	{
 
 		var context = services.GetRequiredService<AppDbContext>();
+		context.Database.Migrate();
 
 		var passwordHasher = services.GetRequiredService<IPasswordHasher<User>>();
 
