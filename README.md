@@ -291,7 +291,7 @@ http://localhost:5173
 ### Backend
 
 ```env
-JWT__KEY=your-secret-key
+JWT__KEY=064e5393-68c8-4570-b86a-0eccd04f7b7b
 JWT__ISSUER=SupplierHubAPI
 JWT__AUDIENCE=SupplierHubClient
 ```
