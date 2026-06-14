@@ -308,7 +308,6 @@ VITE_API_BASE_URL=https://supplierhub.onrender.com/api
 ## Screenshots
 
 ### Dashboard
-*(Add your image to a docs folder and it will appear here)*
 ![Dashboard Overview](./docs/dashboard.png)
 
 ### Supplier Management
