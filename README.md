@@ -1,8 +1,16 @@
 # SupplierHub
 
-Enterprise Supplier Management Platform built with **ASP.NET Core 10**, **React**, **Entity Framework Core**, and **SQL Server**.
+Enterprise Supplier Management Platform built with **ASP.NET Core 10**, **React**, **Entity Framework Core**, and **PostgreSQL (Neon)**.
 
 SupplierHub centralizes supplier onboarding, procurement workflows, catalog management, purchase orders, compliance tracking, logistics, quality inspections, invoicing, role-based access control, and audit logging into a single platform.
+
+---
+
+## 🚀 Live Deployment
+
+- **Frontend (Vercel)**: [https://supplierhub.vercel.app](https://supplierhub.vercel.app)
+- **Backend API (Render)**: [https://supplierhub.onrender.com](https://supplierhub.onrender.com)
+- **Database (Neon)**: [Neon Dashboard - Spring Mouse](https://console.neon.tech/app/projects/spring-mouse-97310562)
 
 ---
 
@@ -59,7 +67,7 @@ SupplierHub centralizes supplier onboarding, procurement workflows, catalog mana
 
 - ASP.NET Core 10
 - Entity Framework Core
-- SQL Server
+- PostgreSQL (Neon Serverless)
 - AutoMapper
 - JWT Authentication
 - Repository Pattern
@@ -129,7 +137,7 @@ Contain business logic and validation.
 Manage database operations.
 
 #### Database
-Stores suppliers, procurement records, compliance documents, contracts, and user information.
+Stores suppliers, procurement records, compliance documents, contracts, and user information in a fully managed PostgreSQL environment.
 
 ---
 
@@ -199,18 +207,12 @@ POST /api/auth/register
 
 ## Database Configuration
 
-Update the connection string in:
-
-```json
-appsettings.json
-```
-
-Example:
+Update the connection string in your backend's `appsettings.json` or Environment Variables to connect to PostgreSQL:
 
 ```json
 {
   "ConnectionStrings": {
-    "AppDb": "Server=(localdb)\\MSSQLLocalDB;Database=SupplierHubDb;Trusted_Connection=True;"
+    "AppDb": "Host=ep-YOUR-ENDPOINT.us-east-1.aws.neon.tech;Database=neondb;Username=YOUR_USER;Password=YOUR_PASSWORD;SSL Mode=Require;Trust Server Certificate=true"
   }
 }
 ```
@@ -238,14 +240,9 @@ cd Supplierhub-backend
 dotnet restore
 ```
 
-### Apply Migrations
-
-```bash
-dotnet ef database update
-```
-
 ### Run Backend
 
+*(Note: Migrations run automatically on startup via `context.Database.MigrateAsync()`)*
 ```bash
 dotnet run
 ```
@@ -253,7 +250,7 @@ dotnet run
 Backend will start at:
 
 ```text
-https://localhost:5001
+http://localhost:5181
 ```
 
 ---
@@ -288,43 +285,39 @@ http://localhost:5173
 
 ## Environment Variables
 
-### Backend
+### Backend (.env or Render Settings)
 
 ```env
 JWT__KEY=064e5393-68c8-4570-b86a-0eccd04f7b7b
 JWT__ISSUER=SupplierHubAPI
 JWT__AUDIENCE=SupplierHubClient
+ConnectionStrings__AppDb=<YOUR_NEON_CONNECTION_STRING>
+ASPNETCORE_HTTP_PORTS=10000
 ```
 
-### Frontend
+### Frontend (.env)
 
 ```env
-VITE_API_BASE_URL=https://localhost:5001/api
+VITE_API_BASE_URL=https://supplierhub.onrender.com/api
 ```
+
+*(For local development, change this to `http://localhost:5181/api`)*
 
 ---
 
 ## Screenshots
 
 ### Dashboard
-
-```text
-Add dashboard screenshot here
-```
+*(Add your image to a docs folder and it will appear here)*
+![Dashboard Overview](./docs/dashboard.png)
 
 ### Supplier Management
-
-```text
-Add supplier management screenshot here
-```
+![Supplier Management](./docs/suppliers.png)
 
 ### Purchase Orders
+![Purchase Orders](./docs/purchase_orders.png)
 
-```text
-Add purchase order screenshot here
-```
-
-
+---
 
 ## Key Highlights
 
