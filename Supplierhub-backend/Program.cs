@@ -453,7 +453,7 @@ app.MapGet("/", (IConfiguration config) =>
 {
     var frontendUrl = Environment.GetEnvironmentVariable("FRONTEND_URL") 
                       ?? config["FrontendUrl"] 
-                      ?? "https://supplierhub.vercel.app";
+                      ?? "https://supplier-hub-theta.vercel.app";
     return Results.Redirect($"{frontendUrl.TrimEnd('/')}/login");
 }).AllowAnonymous();
 

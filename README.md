@@ -8,7 +8,7 @@ SupplierHub centralizes supplier onboarding, procurement workflows, catalog mana
 
 ## 🚀 Live Deployment
 
-- **Frontend (Vercel)**: [https://supplierhub.vercel.app](https://supplierhub.vercel.app)
+- **Frontend (Vercel)**: [https://supplier-hub-theta.vercel.app](https://supplier-hub-theta.vercel.app)
 - **Backend API (Render)**: [https://supplierhub.onrender.com](https://supplierhub.onrender.com)
 - **Database (Neon)**: [Neon Dashboard - Spring Mouse](https://console.neon.tech/app/projects/spring-mouse-97310562)
 
