@@ -448,6 +448,15 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.MapGet("/", (IConfiguration config) => 
+{
+    var frontendUrl = Environment.GetEnvironmentVariable("FRONTEND_URL") 
+                      ?? config["FrontendUrl"] 
+                      ?? "https://supplierhub.vercel.app";
+    return Results.Redirect($"{frontendUrl.TrimEnd('/')}/login");
+}).AllowAnonymous();
+
  
 using (var scope = app.Services.CreateScope())
 
